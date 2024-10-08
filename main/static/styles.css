@@ -1,0 +1,152 @@
+/* Общие стили */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  font-family: 'Inter', Arial, sans-serif;
+  background-color: #f6f6f6;
+  overflow-x: hidden;
+  color: #272727;
+  transition: background-color 0.5s ease;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #007bff;
+}
+
+/* Заголовок */
+header {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 10;
+  transition: background-color 0.5s ease;
+}
+
+header ul {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+/* Содержание */
+.content {
+  width: 100%;
+  height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  transition: opacity 0.5s ease;
+}
+
+/* Кнопка */
+.button {
+  background-color: #007bff;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 5px;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #0069d9;
+}
+
+/* Изображение */
+img {
+  width: 100px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.1);
+}
+
+/* Герой */
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.hero h1 {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.hero p {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+/* Анимации */
+
+/* Плавное появление заголовка */
+.content h1 {
+  opacity: 0;
+  animation: fade-in 1s ease-in-out forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Движение кнопок */
+.button {
+  animation: button-move 2s infinite alternate;
+}
+
+@keyframes button-move {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(10px);
+  }
+}
+
+/* Изменение цвета фона при прокрутке */
+window.addEventListener('scroll', function() {
+  if (window.scrollY > 100) {
+    document.body.style.backgroundColor = '#e9ecef';
+    document.querySelector('header').style.backgroundColor = '#f8f9fa';
+  } else {
+    document.body.style.backgroundColor = '#f6f6f6';
+    document.querySelector('header').style.backgroundColor = 'white';
+  }
+});
+
+/* Плавное исчезновение контента при прокрутке вниз */
+window.addEventListener('scroll', function() {
+  const content = document.querySelector('.content');
+  content.style.opacity = 1 - (window.scrollY / 500);
+});
